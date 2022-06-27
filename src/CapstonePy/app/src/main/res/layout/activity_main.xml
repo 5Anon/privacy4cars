@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_compat"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:text="Location Data"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_compat2"
+        android:layout_width="334dp"
+        android:layout_height="wrap_content"
+        android:text="Vision Data"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_compat3"
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
+        android:text="Maintenance Data"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_compat4"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:text="Driving Behavior Data"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_compat5"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:text="Bluetooth Device Data"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/bt_next"
+            android:text="next"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/bt_exit"
+            android:text="Exit"/>
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.498"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.629" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+<!--    <Switch-->
+<!--        android:id="@+id/switch4"-->
+<!--        android:layout_width="389dp"-->
+<!--        android:layout_height="29dp"-->
+<!--        android:text="Driving Behavior Data"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.411" />-->
+
+<!--    <Switch-->
+<!--        android:id="@+id/switch5"-->
+<!--        android:layout_width="389dp"-->
+<!--        android:layout_height="29dp"-->
+<!--        android:text="Bluetooth Device Data"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <Switch-->
+<!--        android:id="@+id/switch1"-->
+<!--        android:layout_width="389dp"-->
+<!--        android:layout_height="29dp"-->
+<!--        android:layout_marginBottom="576dp"-->
+<!--        android:text="Location Data"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    <Switch-->
+<!--        android:id="@+id/switch2"-->
+<!--        android:layout_width="389dp"-->
+<!--        android:layout_height="29dp"-->
+<!--        android:text="Vision Data"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.262" />-->
+
+<!--    <Switch-->
+<!--        android:id="@+id/switch3"-->
+<!--        android:layout_width="389dp"-->
+<!--        android:layout_height="29dp"-->
+<!--        android:text="Maintenance Data"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.337" />-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+
