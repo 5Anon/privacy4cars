@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import android.widget.CompoundButton;
 import android.widget.TextView;
 //Python libs
 import com.chaquo.python.PyObject;
@@ -17,6 +18,7 @@ import com.chaquo.python.android.AndroidPlatform;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Displays text on GUI for testing
     TextView textView;
 
     // Initialize variable
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("location_privacy_setting",true);
                     editor.apply();
                     switchCompat.setChecked(true);
+                    textView.setText("Location Switch Enabled");
                 }
                 else
                 {
@@ -87,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("location_privacy_setting",false);
                     editor.apply();
                     switchCompat.setChecked(false);
+                    textView.setText("Location Switch Disabled");
                 }
             }
         });
@@ -101,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("vision_privacy_setting",true);
                     editor.apply();
                     switchCompat2.setChecked(true);
+                    textView.setText("Vision Switch Enabled");
                 }
                 else
                 {
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("vision_privacy_setting",false);
                     editor.apply();
                     switchCompat2.setChecked(false);
+                    textView.setText("Vision Switch Disabled");
                 }
             }
         });
@@ -123,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("maintenance_privacy_setting",true);
                     editor.apply();
                     switchCompat3.setChecked(true);
+                    textView.setText("Maintenance Switch Enabled");
                 }
                 else
                 {
@@ -131,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("maintenance_privacy_setting",false);
                     editor.apply();
                     switchCompat3.setChecked(false);
+                    textView.setText("Maintenance Switch Disabled");
                 }
             }
         });
@@ -145,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("driving_privacy_setting",true);
                     editor.apply();
                     switchCompat4.setChecked(true);
+                    textView.setText("Driving Behavior Switch Enabled");
                 }
                 else
                 {
@@ -153,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("driving_privacy_setting",false);
                     editor.apply();
                     switchCompat4.setChecked(false);
+                    textView.setText("Driving Behavior Switch Disabled");
                 }
             }
         });
@@ -167,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("bluetooth_privacy_setting",true);
                     editor.apply();
                     switchCompat5.setChecked(true);
+                    textView.setText("Bluetooth Switch Enabled");
                 }
                 else
                 {
@@ -175,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("bluetooth_privacy_setting",false);
                     editor.apply();
                     switchCompat5.setChecked(false);
+                    textView.setText("Bluetooth Switch Disabled");
                 }
             }
         });

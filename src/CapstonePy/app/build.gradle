@@ -16,11 +16,22 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            //abiFilters "armeabi-v7a", "x86"
         }
 
         python {
             buildPython "C:/ProgramData/Anaconda3/python.exe"
+
+            //Use this section to install Python libraries
+            // Then import them in the myscript.py
+            pip {
+                install "numpy"
+                install "pandas"
+                install "mysql-connector-python"
+                install "datetime"
+
+            }
         }
 
         sourceSets {
