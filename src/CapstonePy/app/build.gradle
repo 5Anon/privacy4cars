@@ -30,6 +30,7 @@ android {
                 install "pandas"
                 install "mysql-connector-python"
                 install "datetime"
+                install "requests"
 
             }
         }

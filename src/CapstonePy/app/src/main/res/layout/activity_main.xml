@@ -11,58 +11,61 @@
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_compat"
+        android:id="@+id/switch_location"
         android:layout_width="333dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:text="Location Data"
         android:textSize="20sp" />
 
+<!--    android:layout_height="wrap_content"-->
+
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_compat2"
-        android:layout_width="334dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/switch_vision"
+        android:layout_width="333dp"
+        android:layout_height="80dp"
         android:text="Vision Data"
         android:textSize="20sp" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_compat3"
-        android:layout_width="331dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/switch_maintenance"
+        android:layout_width="333dp"
+        android:layout_height="80dp"
         android:text="Maintenance Data"
         android:textSize="20sp" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_compat4"
+        android:id="@+id/switch_driving"
         android:layout_width="333dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:text="Driving Behavior Data"
         android:textSize="20sp" />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_compat5"
-        android:layout_width="333dp"
-        android:layout_height="wrap_content"
-        android:text="Bluetooth Device Data"
-        android:textSize="20sp" />
+<!--    <androidx.appcompat.widget.SwitchCompat-->
+<!--        android:id="@+id/switch_bluetooth"-->
+<!--        android:layout_width="333dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:text="Bluetooth Device Data"-->
+<!--        android:textSize="20sp" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/bt_next"
-            android:text="next"/>
+<!--        Test buttons on GUI-->
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:id="@+id/bt_next"-->
+<!--            android:text="next"/>-->
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/bt_exit"
-            android:text="Exit"/>
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:id="@+id/bt_exit"-->
+<!--            android:text="Exit"/>-->
 
     <TextView
         android:id="@+id/textview"

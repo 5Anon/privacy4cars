@@ -3,30 +3,38 @@ package com.example.capstonepy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 
-import android.widget.CompoundButton;
 import android.widget.TextView;
+
+//Information popup
+import android.widget.Toast;
+
 //Python libs
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
 
+//timer
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
+
 public class MainActivity extends AppCompatActivity {
 
-    //Displays text on GUI for testing
+    //Displays output on GUI for testing
     TextView textView;
 
-    // Initialize variable
-    SwitchCompat switchCompat;
-    SwitchCompat switchCompat2;
-    SwitchCompat switchCompat3;
-    SwitchCompat switchCompat4;
-    SwitchCompat switchCompat5;
+    // Initialize variable for switches
+    SwitchCompat switchLocation;
+    SwitchCompat switchVision;
+    SwitchCompat switchMaintenance;
+    SwitchCompat switchDriving;
+    //SwitchCompat switchBluetooth;
 
     Button btNext,btExit;
 
@@ -50,38 +58,91 @@ public class MainActivity extends AppCompatActivity {
         PyObject obj = pyobj.callAttr("main");
 
         textView.setText(obj.toString());
+
         //End Python Function
+
+        //Timer
+        long duration = TimeUnit.SECONDS.toMillis(10);
+
+        //Initialize Timer
+        new CountDownTimer(duration, 1000) {
+            @Override
+            public void onTick(long l) {
+
+                String sDuration = String.format(Locale.ENGLISH, "%02d : %02d"
+                ,TimeUnit.MILLISECONDS.toMinutes(l)
+                        ,TimeUnit.MILLISECONDS.toSeconds(l) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)));
+                textView.setText(sDuration);
+            }
+
+            @Override
+            public void onFinish() {
+
+                //Information popup
+                Toast.makeText(getApplicationContext(), "Collecting and Sending Data....",Toast.LENGTH_LONG).show();
+
+                if (switchLocation.isChecked()){
+                    //PyObject obj = pyobj.callAttr("locationFunction");
+                }
+
+                if (switchVision.isChecked()){
+                    //PyObject obj = pyobj.callAttr("visionFunction");
+                }
+
+                if (switchMaintenance.isChecked()){
+                    //PyObject obj = pyobj.callAttr("maintenanceFunction");
+                }
+
+                if (switchDriving.isChecked()){
+                    //PyObject obj = pyobj.callAttr("drivingFunction");
+                    //textView.setText(obj.toString());
+                }
+
+                this.start();
+                //textView.setVisibility((View.GONE));
+
+                //, "Countdown Timer has ended", Toast.LENGTH_LONG.show());
+
+            }
+        }.start();
+
+        //End Timer
 
 
         // Assign variable
-        switchCompat=findViewById(R.id.switch_compat);
-        switchCompat2=findViewById(R.id.switch_compat2);
-        switchCompat3=findViewById(R.id.switch_compat3);
-        switchCompat4=findViewById(R.id.switch_compat4);
-        switchCompat5=findViewById(R.id.switch_compat5);
+        switchLocation=findViewById(R.id.switch_location);
+        switchVision=findViewById(R.id.switch_vision);
+        switchMaintenance=findViewById(R.id.switch_maintenance);
+        switchDriving=findViewById(R.id.switch_driving);
+        //switchBluetooth=findViewById(R.id.switch_bluetooth);
 
-        btNext=findViewById(R.id.bt_next);
-        btExit=findViewById(R.id.bt_exit);
+        //Testing buttons
+        //btNext=findViewById(R.id.bt_next);
+        //btExit=findViewById(R.id.bt_exit);
 
         // Save switch state in shared preferences
         SharedPreferences sharedPreferences=getSharedPreferences("save",MODE_PRIVATE);
-        switchCompat.setChecked(sharedPreferences.getBoolean("location_privacy_setting",true));
-        switchCompat2.setChecked(sharedPreferences.getBoolean("vision_privacy_setting",true));
-        switchCompat3.setChecked(sharedPreferences.getBoolean("maintenance_privacy_setting",true));
-        switchCompat4.setChecked(sharedPreferences.getBoolean("driving_privacy_setting",true));
-        switchCompat5.setChecked(sharedPreferences.getBoolean("bluetooth_privacy_setting",true));
+        switchLocation.setChecked(sharedPreferences.getBoolean("location_privacy_setting",true));
+        switchVision.setChecked(sharedPreferences.getBoolean("vision_privacy_setting",true));
+        switchMaintenance.setChecked(sharedPreferences.getBoolean("maintenance_privacy_setting",true));
+        switchDriving.setChecked(sharedPreferences.getBoolean("driving_privacy_setting",true));
+        //switchBluetooth.setChecked(sharedPreferences.getBoolean("bluetooth_privacy_setting",true));
 
-        switchCompat.setOnClickListener(new View.OnClickListener() {
+        switchLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (switchCompat.isChecked())
+                if (switchLocation.isChecked())
                 {
                     // When switch checked
                     SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                     editor.putBoolean("location_privacy_setting",true);
                     editor.apply();
-                    switchCompat.setChecked(true);
+                    switchLocation.setChecked(true);
                     textView.setText("Location Switch Enabled");
+
+//                    PyObject obj = pyobj.callAttr("locationFunction");
+//                    textView.setText(obj.toString());
                 }
                 else
                 {
@@ -89,23 +150,27 @@ public class MainActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                     editor.putBoolean("location_privacy_setting",false);
                     editor.apply();
-                    switchCompat.setChecked(false);
+                    switchLocation.setChecked(false);
                     textView.setText("Location Switch Disabled");
+
                 }
             }
         });
 
-        switchCompat2.setOnClickListener(new View.OnClickListener() {
+        switchVision.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (switchCompat2.isChecked())
+                if (switchVision.isChecked())
                 {
                     // When switch checked
                     SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                     editor.putBoolean("vision_privacy_setting",true);
                     editor.apply();
-                    switchCompat2.setChecked(true);
+                    switchVision.setChecked(true);
                     textView.setText("Vision Switch Enabled");
+
+//                    PyObject obj = pyobj.callAttr("visionFunction");
+//                    textView.setText(obj.toString());
                 }
                 else
                 {
@@ -113,23 +178,26 @@ public class MainActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                     editor.putBoolean("vision_privacy_setting",false);
                     editor.apply();
-                    switchCompat2.setChecked(false);
+                    switchVision.setChecked(false);
                     textView.setText("Vision Switch Disabled");
                 }
             }
         });
 
-        switchCompat3.setOnClickListener(new View.OnClickListener() {
+        switchMaintenance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (switchCompat3.isChecked())
+                if (switchMaintenance.isChecked())
                 {
                     // When switch checked
                     SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                     editor.putBoolean("maintenance_privacy_setting",true);
                     editor.apply();
-                    switchCompat3.setChecked(true);
+                    switchMaintenance.setChecked(true);
                     textView.setText("Maintenance Switch Enabled");
+//
+//                    PyObject obj = pyobj.callAttr("maintenanceFunction");
+//                    textView.setText(obj.toString());
                 }
                 else
                 {
@@ -137,23 +205,26 @@ public class MainActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                     editor.putBoolean("maintenance_privacy_setting",false);
                     editor.apply();
-                    switchCompat3.setChecked(false);
+                    switchMaintenance.setChecked(false);
                     textView.setText("Maintenance Switch Disabled");
                 }
             }
         });
 
-        switchCompat4.setOnClickListener(new View.OnClickListener() {
+        switchDriving.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (switchCompat4.isChecked())
+                if (switchDriving.isChecked())
                 {
                     // When switch checked
                     SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                     editor.putBoolean("driving_privacy_setting",true);
                     editor.apply();
-                    switchCompat4.setChecked(true);
+                    switchDriving.setChecked(true);
                     textView.setText("Driving Behavior Switch Enabled");
+
+//                    PyObject obj = pyobj.callAttr("drivingBehaviorFunction");
+//                    textView.setText(obj.toString());
                 }
                 else
                 {
@@ -161,107 +232,58 @@ public class MainActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
                     editor.putBoolean("driving_privacy_setting",false);
                     editor.apply();
-                    switchCompat4.setChecked(false);
+                    switchDriving.setChecked(false);
                     textView.setText("Driving Behavior Switch Disabled");
+
                 }
             }
         });
 
-        switchCompat5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (switchCompat5.isChecked())
-                {
-                    // When switch checked
-                    SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
-                    editor.putBoolean("bluetooth_privacy_setting",true);
-                    editor.apply();
-                    switchCompat5.setChecked(true);
-                    textView.setText("Bluetooth Switch Enabled");
-                }
-                else
-                {
-                    // When switch unchecked
-                    SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
-                    editor.putBoolean("bluetooth_privacy_setting",false);
-                    editor.apply();
-                    switchCompat5.setChecked(false);
-                    textView.setText("Bluetooth Switch Disabled");
-                }
-            }
-        });
+//        switchBluetooth.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (switchBluetooth.isChecked())
+//                {
+//                    // When switch checked
+//                    SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+//                    editor.putBoolean("bluetooth_privacy_setting",true);
+//                    editor.apply();
+//                    switchBluetooth.setChecked(true);
+//                    textView.setText("Bluetooth Switch Enabled");
+//
+//                    PyObject obj = pyobj.callAttr("bluetoothFunction");
+//                    textView.setText(obj.toString());
+//                }
+//                else
+//                {
+//                    // When switch unchecked
+//                    SharedPreferences.Editor editor=getSharedPreferences("save",MODE_PRIVATE).edit();
+//                    editor.putBoolean("bluetooth_privacy_setting",false);
+//                    editor.apply();
+//                    switchBluetooth.setChecked(false);
+//                    textView.setText("Bluetooth Switch Disabled");
+//                }
+//            }
+//        });
 
-        btNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Go to next activity
-                Intent intent=new Intent(MainActivity.this,MainActivity2.class);
-                startActivity(intent);
-            }
-        });
-        btExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Close the app
-                MainActivity.this.finishAffinity();
-            }
-        });
+
+        //Test buttons functions
+
+//        btNext.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // Go to next activity
+//                Intent intent=new Intent(MainActivity.this,MainActivity2.class);
+//                startActivity(intent);
+//            }
+//        });
+//        btExit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // Close the app
+//                MainActivity.this.finishAffinity();
+//            }
+//        });
     }
 }
-
-
-
-
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.appcompat.widget.SwitchCompat;
-//
-//import android.content.Intent;
-//import android.content.SharedPreferences;
-//import android.os.Bundle;
-//import android.service.autofill.FillEventHistory;
-//import android.os.Bundle;
-//import android.view.View;
-//import android.widget.Button;
-//
-//import android.widget.TextView;
-//
-//import com.chaquo.python.PyObject;
-//import com.chaquo.python.Python;
-//import com.chaquo.python.android.AndroidPlatform;
-//import com.google.android.material.switchmaterial.SwitchMaterial;
-//
-//public class MainActivity extends AppCompatActivity
-//{
-//
-//    TextView textView;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        textView = (TextView)findViewById(R.id.textview);
-//
-//        if (! Python.isStarted()) {
-//            Python.start(new AndroidPlatform(this));
-//        }
-//
-//        Python py = Python.getInstance();
-//
-//        PyObject pyobj = py.getModule("myscript");
-//
-//        PyObject obj = pyobj.callAttr("main");
-//
-//        textView.setText(obj.toString());
-//
-//    }
-//
-//    private void loadSharedPreferences()
-//    {
-//        SharedPreferences sharedPreferences = getSharedPreferences()
-//    }
-//
-//
-//
-//}
 
