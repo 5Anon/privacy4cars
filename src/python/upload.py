@@ -6,7 +6,7 @@ class Upload():
     def __init__(self, serverUrl):
         self.serverUrl = serverUrl
 
-    def daatframeAsBuffer(self, csv_buffer):
+    def dataframeAsBuffer(self, csv_buffer):
         """
         Uploads a dataframe as string buffer
         :param csv_buffer: dataframe buffer as string
@@ -24,5 +24,5 @@ class Upload():
         csv_buffer = StringIO()
         df.to_csv(csv_buffer, index=False)
         df.reset_index(drop=True, inplace=True)
-        status = self.daatframeAsBuffer(csv_buffer)
+        status = self.dataframeAsBuffer(csv_buffer)
         return status
