@@ -19,12 +19,21 @@ import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
 
+//Button
+import android.content.Intent;
+
 //timer
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 
+
+
 public class MainActivity extends AppCompatActivity {
+
+    //String src = "/storage/emulated/0/Download/trackLog-2022-Jun-12_20-42-17.csv";
+    //String dst = "/data/data/com.example.capstonepy/files/test.csv";
+
 
     //Displays output on GUI for testing
     TextView textView;
@@ -36,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
     SwitchCompat switchDriving;
     //SwitchCompat switchBluetooth;
 
-    Button btNext,btExit;
+    //Button btNext,btExit;
+    Button btNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +63,16 @@ public class MainActivity extends AppCompatActivity {
 
         Python py = Python.getInstance();
 
-        PyObject pyobj = py.getModule("myscript");
+        //PyObject pyobj = py.getModule("myscript");
 
-        PyObject obj = pyobj.callAttr("main");
+        //PyObject obj = pyobj.callAttr("main");
 
-        textView.setText(obj.toString());
+        //textView.setText(obj.toString());
 
         //End Python Function
 
         //Timer
-        long duration = TimeUnit.SECONDS.toMillis(10);
+        long duration = TimeUnit.SECONDS.toMillis(10000);
 
         //Initialize Timer
         new CountDownTimer(duration, 1000) {
@@ -73,31 +83,41 @@ public class MainActivity extends AppCompatActivity {
                 ,TimeUnit.MILLISECONDS.toMinutes(l)
                         ,TimeUnit.MILLISECONDS.toSeconds(l) -
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)));
-                textView.setText(sDuration);
+                //textView.setText(sDuration);
             }
 
             @Override
             public void onFinish() {
 
-                //Information popup
+                boolean processUpdate = switchLocation.isChecked() || switchVision.isChecked() || switchMaintenance.isChecked() || switchDriving.isChecked();
+
+                //Information balloon popup
                 Toast.makeText(getApplicationContext(), "Collecting and Sending Data....",Toast.LENGTH_LONG).show();
 
-                if (switchLocation.isChecked()){
-                    //PyObject obj = pyobj.callAttr("locationFunction");
+                if (processUpdate) {
+                    PyObject pyobj = py.getModule("myscript");
+                    PyObject obj = pyobj.callAttr("main");
+                    textView.setText(obj.toString());
                 }
 
-                if (switchVision.isChecked()){
-                    //PyObject obj = pyobj.callAttr("visionFunction");
-                }
 
-                if (switchMaintenance.isChecked()){
-                    //PyObject obj = pyobj.callAttr("maintenanceFunction");
-                }
 
-                if (switchDriving.isChecked()){
-                    //PyObject obj = pyobj.callAttr("drivingFunction");
-                    //textView.setText(obj.toString());
-                }
+//                if (switchLocation.isChecked()){
+//                    PyObject obj = pyobj.callAttr("locationFunction");
+//                }
+//
+//                if (switchVision.isChecked()){
+//                    PyObject obj = pyobj.callAttr("visionFunction");
+//                }
+//
+//                if (switchMaintenance.isChecked()){
+//                    PyObject obj = pyobj.callAttr("maintenanceFunction");
+//                }
+//
+//                if (switchDriving.isChecked()){
+//                    PyObject obj = pyobj.callAttr("drivingFunction");
+//                    //textView.setText(obj.toString());
+//                }
 
                 this.start();
                 //textView.setVisibility((View.GONE));
@@ -118,15 +138,15 @@ public class MainActivity extends AppCompatActivity {
         //switchBluetooth=findViewById(R.id.switch_bluetooth);
 
         //Testing buttons
-        //btNext=findViewById(R.id.bt_next);
+        btNext=findViewById(R.id.bt_next);
         //btExit=findViewById(R.id.bt_exit);
 
         // Save switch state in shared preferences
         SharedPreferences sharedPreferences=getSharedPreferences("save",MODE_PRIVATE);
-        switchLocation.setChecked(sharedPreferences.getBoolean("location_privacy_setting",true));
-        switchVision.setChecked(sharedPreferences.getBoolean("vision_privacy_setting",true));
-        switchMaintenance.setChecked(sharedPreferences.getBoolean("maintenance_privacy_setting",true));
-        switchDriving.setChecked(sharedPreferences.getBoolean("driving_privacy_setting",true));
+        switchLocation.setChecked(sharedPreferences.getBoolean("location_privacy_setting",false));
+        switchVision.setChecked(sharedPreferences.getBoolean("vision_privacy_setting",false));
+        switchMaintenance.setChecked(sharedPreferences.getBoolean("maintenance_privacy_setting",false));
+        switchDriving.setChecked(sharedPreferences.getBoolean("driving_privacy_setting",false));
         //switchBluetooth.setChecked(sharedPreferences.getBoolean("bluetooth_privacy_setting",true));
 
         switchLocation.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("location_privacy_setting",true);
                     editor.apply();
                     switchLocation.setChecked(true);
-                    textView.setText("Location Switch Enabled");
+                    textView.setText("Opted-in to share Location Data");
 
 //                    PyObject obj = pyobj.callAttr("locationFunction");
 //                    textView.setText(obj.toString());
@@ -151,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("location_privacy_setting",false);
                     editor.apply();
                     switchLocation.setChecked(false);
-                    textView.setText("Location Switch Disabled");
+                    textView.setText("Opted-out to share Location Data");
 
                 }
             }
@@ -167,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("vision_privacy_setting",true);
                     editor.apply();
                     switchVision.setChecked(true);
-                    textView.setText("Vision Switch Enabled");
+                    textView.setText("Opted-in to share Vision Data");
 
 //                    PyObject obj = pyobj.callAttr("visionFunction");
 //                    textView.setText(obj.toString());
@@ -179,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("vision_privacy_setting",false);
                     editor.apply();
                     switchVision.setChecked(false);
-                    textView.setText("Vision Switch Disabled");
+                    textView.setText("Opted-out to share Vision Data");
                 }
             }
         });
@@ -194,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("maintenance_privacy_setting",true);
                     editor.apply();
                     switchMaintenance.setChecked(true);
-                    textView.setText("Maintenance Switch Enabled");
+                    textView.setText("Opted-in to share Maintenance Data");
 //
 //                    PyObject obj = pyobj.callAttr("maintenanceFunction");
 //                    textView.setText(obj.toString());
@@ -206,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("maintenance_privacy_setting",false);
                     editor.apply();
                     switchMaintenance.setChecked(false);
-                    textView.setText("Maintenance Switch Disabled");
+                    textView.setText("Opted-out to share Maintenance Data");
                 }
             }
         });
@@ -221,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("driving_privacy_setting",true);
                     editor.apply();
                     switchDriving.setChecked(true);
-                    textView.setText("Driving Behavior Switch Enabled");
+                    textView.setText("Opted-in to share Driving Behavior Data");
 
 //                    PyObject obj = pyobj.callAttr("drivingBehaviorFunction");
 //                    textView.setText(obj.toString());
@@ -233,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("driving_privacy_setting",false);
                     editor.apply();
                     switchDriving.setChecked(false);
-                    textView.setText("Driving Behavior Switch Disabled");
+                    textView.setText("Opted-out to share Driving Behavior Data");
 
                 }
             }
@@ -268,15 +288,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Test buttons functions
+        btNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Go to next activity
 
-//        btNext.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Go to next activity
-//                Intent intent=new Intent(MainActivity.this,MainActivity2.class);
-//                startActivity(intent);
-//            }
-//        });
+                PyObject pyobj = py.getModule("myscript");
+
+                PyObject obj = pyobj.callAttr("main");
+
+                textView.setText(obj.toString());
+
+                //Intent intent=new Intent(MainActivity.this,MainActivity2.class);
+                //startActivity(intent);
+            }
+        });
 //        btExit.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
