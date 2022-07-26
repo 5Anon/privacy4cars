@@ -14,21 +14,14 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="106dp"
-        android:text="Your collected data is being anonymized by default. \nTo share data with the manufacturer, please opt-in."
-        android:textSize="28sp" />
+        android:text="To share data with the manufacturer, please opt-in."
+        android:textSize="32sp" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_location"
         android:layout_width="333dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:text="Location Data"
-        android:textSize="20sp" />
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_driving"
-        android:layout_width="333dp"
-        android:layout_height="wrap_content"
-        android:text="Driving Behavior Data"
         android:textSize="20sp" />
 
 <!--    android:layout_height="wrap_content"-->
@@ -36,19 +29,23 @@
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_vision"
         android:layout_width="333dp"
-        android:layout_height="wrap_content"
-        android:text="*Vision Data"
-        android:enabled="false"
+        android:layout_height="80dp"
+        android:text="Vision Data"
         android:textSize="20sp" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_maintenance"
         android:layout_width="333dp"
-        android:layout_height="wrap_content"
-        android:text="*Maintenance Data"
-        android:enabled="false"
+        android:layout_height="80dp"
+        android:text="Maintenance Data"
         android:textSize="20sp" />
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_driving"
+        android:layout_width="333dp"
+        android:layout_height="80dp"
+        android:text="Driving Behavior Data"
+        android:textSize="20sp" />
 
 <!--    <androidx.appcompat.widget.SwitchCompat-->
 <!--        android:id="@+id/switch_bluetooth"-->
@@ -59,7 +56,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="73dp"
+        android:layout_height="61dp"
         android:layout_marginTop="20dp">
 
         <!--        Test buttons on GUI-->
@@ -94,12 +91,5 @@
             app:layout_constraintVertical_bias="0.629" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="* Upcoming features"
-        android:textSize="12sp"/>
 
 </LinearLayout>
