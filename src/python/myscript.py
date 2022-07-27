@@ -16,28 +16,33 @@ import pandas as pd
 import socket
 import requests
 
+import warnings
+warnings.filterwarnings("ignore")
+
 
 def main():
     try:
         xml_file_path = "/data/data/com.example.capstonepy/shared_prefs/save.xml"
         [maintenance_privacy_setting,driving_privacy_setting,location_privacy_setting,vision_privacy_setting] = getSaveXMLData(xml_file_path)
-        parameters = getParameterizationVectors() # TO-DO: NEED TO UPDATE THE API WITH CAR DATA VALUES AFTER ANONYMIZATION METRICS
-        dest = r'/data/data/com.example.capstonepy/files/trackLog-2022-Jun-17_11-17-49.csv'
-        data =  preprocessData(dest,'car70')
+        parameters = getParameterizationVectors()
+        dataFile = r'/data/data/com.example.capstonepy/files/trackLog-2022-Jun-17_11-17-49.csv'
+        data =  preprocessData(dataFile,'car101')
         meta_data = []
         if(driving_privacy_setting):
             data = Anonymizer(parameters["Driving Behavior"], data) # TO-DO: NEED TO ADD CAR DATA TO ENABLE MORE QUASI-IDENTIFIERS
-            meta_data.extend(parameters["Driving Behavior"].keys())
+            for i in parameters["Driving Behavior"].keys():
+                meta_data.append(data.columns.get_loc(i))
         if(location_privacy_setting):
             data = Anonymizer(parameters["Location Data"], data) # TO-DO: NEED TO ADD CAR DATA TO ENABLE MORE QUASI-IDENTIFIERS
-            meta_data.extend(parameters["Location Data"].keys())
+            for i in parameters["Location Data"].keys():
+                meta_data.append(data.columns.get_loc(i))
         Meta_Data_col = [str(meta_data)]*len(data)
         data.insert(loc=1, column="Meta_Data",value=Meta_Data_col)
         uploadData = Upload('http://privacyforconnectedvehiclesapi.westus3.cloudapp.azure.com:3999/api/upload')
         uploadData.dataframe(data)
         return "Data Uploaded!"
     except Exception as e:
-        return "Data Upload Failed: "
+        return "Data Upload Failed! "+str(e)
 
 def getSaveXMLData(path):
     xml_file = open("/data/data/com.example.capstonepy/shared_prefs/save.xml")
@@ -205,4 +210,3 @@ def bluetoothFunction():
                 
     except Exception as e:
         return e
-    
