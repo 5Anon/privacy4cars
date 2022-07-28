@@ -10,11 +10,25 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="106dp"
+        android:text="Your collected data is being anonymized by default. \nTo share data with the manufacturer, please opt-in."
+        android:textSize="28sp" />
+
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_location"
         android:layout_width="333dp"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:text="Location Data"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_driving"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:text="Driving Behavior Data"
         android:textSize="20sp" />
 
 <!--    android:layout_height="wrap_content"-->
@@ -22,23 +36,19 @@
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_vision"
         android:layout_width="333dp"
-        android:layout_height="80dp"
-        android:text="Vision Data"
+        android:layout_height="wrap_content"
+        android:text="*Vision Data"
+        android:enabled="false"
         android:textSize="20sp" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_maintenance"
         android:layout_width="333dp"
-        android:layout_height="80dp"
-        android:text="Maintenance Data"
+        android:layout_height="wrap_content"
+        android:text="*Maintenance Data"
+        android:enabled="false"
         android:textSize="20sp" />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_driving"
-        android:layout_width="333dp"
-        android:layout_height="80dp"
-        android:text="Driving Behavior Data"
-        android:textSize="20sp" />
 
 <!--    <androidx.appcompat.widget.SwitchCompat-->
 <!--        android:id="@+id/switch_bluetooth"-->
@@ -49,40 +59,47 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="73dp"
         android:layout_marginTop="20dp">
 
-<!--        Test buttons on GUI-->
-<!--        <Button-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:id="@+id/bt_next"-->
-<!--            android:text="next"/>-->
+        <!--        Test buttons on GUI-->
+        <Button
+            android:id="@+id/bt_next"
+            android:layout_width="1mm"
+            android:layout_height="1mm"
+            android:layout_weight="0"
+            android:text="Simulate Data Upload" />
 
-<!--        <Button-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:id="@+id/bt_exit"-->
-<!--            android:text="Exit"/>-->
+        <!--        <Button-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:id="@+id/bt_exit"-->
+        <!--            android:text="Exit"/>-->
 
-    <TextView
-        android:id="@+id/textview"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
 
-        android:layout_height="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.498"
 
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.629" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="* Upcoming features"
+        android:textSize="12sp"/>
 
 </LinearLayout>

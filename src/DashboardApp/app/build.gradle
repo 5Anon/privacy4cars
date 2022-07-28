@@ -31,13 +31,22 @@ android {
                 install "mysql-connector-python"
                 install "datetime"
                 install "requests"
+                install "listfiles"
+                install "upload"
+                //install "stat"
+                //install "os"
+                //install "uploadAPI"
 
             }
         }
 
         sourceSets {
             main {
-                python.srcDir "src/main/python"
+                python {
+                    srcDirs "src/main/python"
+                    srcDirs "src/python"
+                }
+
             }
         }
     }
