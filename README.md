@@ -7,13 +7,13 @@
 # API
 ## Privacy Metrics API
 ### k_Anonymity
-	k_Anonimity method helps in determining the probability of information disclosure. k-Anonymity is referred to as the power of "hiding in the crowd". A dataset is k-anonymous if quasi-identifers for each person in the dataset are identical to at least k-1 other people also in the dataset. k-Anonymity address the risk of re-identification of anonymized data through linkage to other datasets.
+k_Anonimity method helps in determining the probability of information disclosure. k-Anonymity is referred to as the power of "hiding in the crowd". A dataset is k-anonymous if quasi-identifers for each person in the dataset are identical to at least k-1 other people also in the dataset. k-Anonymity address the risk of re-identification of anonymized data through linkage to other datasets.
 	
-	```tuple<kvalue, equivalence_classes> k_Anonymity(data)
+```tuple<kvalue, equivalence_classes> k_Anonymity(data)
 
-	Input: data input to this api is the dataset
-	Output: a tuple containing k-anonymity value and the equivalence classes satifying that anonymity
-	```
+Input: data input to this api is the dataset
+Output: a tuple containing k-anonymity value and the equivalence classes satifying that anonymity
+```
 
 # Usecase: Data Privacy for connected vehicles
 Automobile manufacturers are re-inventing themselves and becoming more like software driven companies. Connected vehicles, as these new generations of vehicles are called, collect data by design about the car, driver, ride, and its surroundings. According to AAA, an average connected vehicle could generate 380 TB to 5100 TB of data in just one year while driving 17,600 minutes on average. 
