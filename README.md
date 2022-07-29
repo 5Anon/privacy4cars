@@ -82,10 +82,10 @@ This repository contains the library and application that car manufacturers can 
 
 **Request**
 ```	
-	GET /api/pv
+	**GET /api/pv**
 
 	Example:
-	curl -i -H http://localhost:3999/api/pv
+		curl -i -H http://localhost:3999/api/pv
 ```
 
 **Response**
@@ -103,7 +103,7 @@ This repository contains the library and application that car manufacturers can 
 ### Anonymized Data Upload API
 **Request**
 ```	
-	POST /api/upload
+	**POST /api/upload**
 
 	Example:
 		curl -i -H http://localhost:3999/api/upload -d "my data"
