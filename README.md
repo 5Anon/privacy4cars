@@ -7,7 +7,8 @@
 # API
 ## Privacy Metrics API
 ### runPrivacyMetrics
-	runPrivacyMetrics helps in determining both K Anonimity and L-Diversity of the given dataset. 
+runPrivacyMetrics helps in determining both K Anonimity and L-Diversity of the given dataset. 
+
 ```
 tuple<kvalue, ldiversity> runPrivacyMetrics(data)
 Input: data - input to this api is the dataset for which k-anonymity and l-diversity values are to be determined
