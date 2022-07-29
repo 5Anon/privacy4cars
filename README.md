@@ -34,7 +34,18 @@ Example:
 	k_anon, eq = k_Anonymity(dataframeObj)
 ```
 
+### Distinct_L_Diversity
+Distinct_L_Diversity method determines entropy l-diversity and distinct l-diversity. l-Diversity is the probability of sensitive attribute disclosures.
 
+```
+tuple<lvalue, equivalence_classes> Distinct_L_Diversity(data):
+Input: data - input to this api is the dataset
+Output: a tuple 
+			lvalue - distinct l-diversity value
+			equivalence classes satifying the l-diversity value
+Example:
+	lvalue, eq = Distinct_L_Diversity(dataframeObj)
+```
 
 # Usecase: Data Privacy for connected vehicles
 Automobile manufacturers are re-inventing themselves and becoming more like software driven companies. Connected vehicles, as these new generations of vehicles are called, collect data by design about the car, driver, ride, and its surroundings. According to AAA, an average connected vehicle could generate 380 TB to 5100 TB of data in just one year while driving 17,600 minutes on average. 
