@@ -78,7 +78,7 @@ This repository contains the library and application that car manufacturers can 
 
 ## Webservice API(s)
 
-### Get Parameterization vector API
+### Get Parameterization Vector API
 
 **Request**
 ```	
@@ -98,4 +98,34 @@ This repository contains the library and application that car manufacturers can 
 	Content-Length: 2
 
 	[]
+```
+
+### Anonymized Data Upload API
+**Request**
+```	
+	POST /api/upload
+
+	Example:
+		curl -i -H http://localhost:3999/api/upload -d "my data"
+
+		curl -i -H http://localhost:3999/api/upload -d "anonymized dataframe"
+```
+
+**Response**
+```
+	HTTP/1.1 200 OK
+	Date: Thu, 28 Jul 2022 12:36:30 GMT
+	Status: 200 OK
+	Connection: close
+
+	------------------------------------
+	HTTP/1.1 404 Not Found
+	Date: Thu, 28 Jul 2022 12:36:30 GMT
+	Status: 404 Not Found
+	Connection: close
+	Content-Type: text/html;charset=utf-8
+	Content-Length: 35
+	
+	{"status":404,"reason":"Not found"}
+
 ```
