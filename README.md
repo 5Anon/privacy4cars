@@ -4,9 +4,8 @@
 - **Anonymization processor** - This library executes on the edge and applies the scripts created by the first library on the raw data that is generated on the edge device. APIs in this library are dependent upon the user’s preferences,  Output of this library is the anonymized data. Once anonymized data is uploaded to the server for storage.
 - **Privacy Analyzer** - This library provides methods that can performs privacy analysis on a dataset and provide the probability of attribute, information and membership disclosures.
 
-# API
-## Anonymizer Processor API
-### Anonymizer
+# Anonymizer Processor API
+### Anonymizer()
 Anonymizer API anonymizes input dataset resulting in an anonymized dataset
 
 ```
@@ -23,8 +22,8 @@ Example:
 
 ```
 
-## Privacy Analyzer API
-### runPrivacyMetrics
+# Privacy Analyzer API
+### runPrivacyMetrics()
 runPrivacyMetrics helps in determining both K Anonimity and L-Diversity of the given dataset. 
 
 ```
@@ -40,7 +39,7 @@ Example:
 
 ```
 
-### k_Anonymity
+### k_Anonymity()
 k_Anonimity method helps in determining the probability of information disclosure. k-Anonymity is referred to as the power of "hiding in the crowd". A dataset is k-anonymous if quasi-identifers for each person in the dataset are identical to at least k-1 other people also in the dataset. k-Anonymity address the risk of re-identification of anonymized data through linkage to other datasets.
 	
 ```
@@ -54,7 +53,7 @@ Example:
 	k_anon, eq = k_Anonymity(dataframeObj)
 ```
 
-### Distinct_L_Diversity
+### Distinct_L_Diversity()
 Distinct_L_Diversity method determines entropy l-diversity and distinct l-diversity. l-Diversity is the probability of sensitive attribute disclosures.
 
 ```
