@@ -35,7 +35,7 @@ Output: a tuple
 			k-anonymity value 
 			l-diversity value
 Example:
-	k_anon, l_diversity = runPrivacyMetrics(dataframeObj)
+	(k_anon, l_diversity) = runPrivacyMetrics(dataframeObj)
 
 ```
 
@@ -43,27 +43,27 @@ Example:
 k_Anonimity method helps in determining the probability of information disclosure. k-Anonymity is referred to as the power of "hiding in the crowd". A dataset is k-anonymous if quasi-identifers for each person in the dataset are identical to at least k-1 other people also in the dataset. k-Anonymity address the risk of re-identification of anonymized data through linkage to other datasets.
 	
 ```
-tuple<kvalue, equivalence_classes> k_Anonymity(data)
+(kvalue, equivalence_classes) k_Anonymity(data)
 
 Input: data - input to this api is the dataset
 Output: a tuple 
 			k-anonymity value 
 			equivalence classes satifying the anonymity value
 Example:
-	k_anon, eq = k_Anonymity(dataframeObj)
+	(k_anon, eq) = k_Anonymity(dataframeObj)
 ```
 
 ### Distinct_L_Diversity()
 Distinct_L_Diversity method determines entropy l-diversity and distinct l-diversity. l-Diversity is the probability of sensitive attribute disclosures.
 
 ```
-tuple<lvalue, equivalence_classes> Distinct_L_Diversity(data):
+(lvalue, equivalence_classes) Distinct_L_Diversity(data):
 Input: data - input to this api is the dataset
 Output: a tuple 
 			lvalue - distinct l-diversity value
 			equivalence classes satifying the l-diversity value
 Example:
-	lvalue, eq = Distinct_L_Diversity(dataframeObj)
+	(lvalue, eq) = Distinct_L_Diversity(dataframeObj)
 ```
 
 # Usecase: Data Privacy for connected vehicles
@@ -75,3 +75,27 @@ This repository contains the library and application that car manufacturers can 
 
 
 ![Library Usage in privacy compliance for connected cars](./images/Libraryusage.PNG?raw=true)
+
+## Webservice API(s)
+
+### Get Parameterization vector API
+
+**Request**
+```	
+	GET /api/pv
+
+	Example:
+	curl -i -H http://localhost:3999/api/pv
+```
+
+**Response**
+```
+	HTTP/1.1 200 OK
+	Date: Thu, 28 Jul 2022 12:36:30 GMT
+	Status: 200 OK
+	Connection: close
+	Content-Type: application/json
+	Content-Length: 2
+
+	[]
+```
