@@ -1,8 +1,8 @@
 # 5-Anon 
 5 -Anon is an end-to-end software development kit for data privacy. It consists of 3 libraries. These 3 libraries work together to provide a comprehensive data anonymization capabilities.
-- Parameterization processor - This library is to be used with server components along with raw data storage. Its purpose is to identify the best anonymization technique to be scripted to achieve required probability of disclosure. Scripts created by this processor are utilized by Anonymization processor library.
-- Anonymization processor - This library executes on the edge and applies the scripts created by the first library on the raw data that is generated on the edge device. APIs in this library are dependent upon the user’s preferences,  Output of this library is the anonymized data. Once anonymized data is uploaded to the server for storage.
-- Privacy Analyzer - This library provides methods that can performs privacy analysis on a dataset and provide the probability of attribute, information and membership disclosures.
+- **Parameterization processor** - This library is to be used with server components along with raw data storage. Its purpose is to identify the best anonymization technique to be scripted to achieve required probability of disclosure. Scripts created by this processor are utilized by Anonymization processor library.
+- **Anonymization processor** - This library executes on the edge and applies the scripts created by the first library on the raw data that is generated on the edge device. APIs in this library are dependent upon the user’s preferences,  Output of this library is the anonymized data. Once anonymized data is uploaded to the server for storage.
+- **Privacy Analyzer** - This library provides methods that can performs privacy analysis on a dataset and provide the probability of attribute, information and membership disclosures.
 
 # API
 ## Anonymizer Processor API
