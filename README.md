@@ -5,13 +5,33 @@
 - Privacy Analyzer - This library provides methods that can performs privacy analysis on a dataset and provide the probability of attribute, information and membership disclosures.
 
 # API
-## Privacy Metrics API
+## Anonymizer Processor API
+### Anonymizer
+Anonymizer API anonymizes input dataset resulting in an anonymized dataset
+
+```
+anonymized_dataset Anonymizer(preferences, anonymization_parameters, raw_dataset)
+
+Input:	preferences
+		anonymization_parameters
+		raw_dataset
+
+Output: anonymized_dataset
+
+Example:
+	k_anon, l_diversity = runPrivacyMetrics(dataframeObj)
+
+```
+
+## Privacy Analyzer API
 ### runPrivacyMetrics
 runPrivacyMetrics helps in determining both K Anonimity and L-Diversity of the given dataset. 
 
 ```
 tuple<kvalue, ldiversity> runPrivacyMetrics(data)
-Input: data - input to this api is the dataset for which k-anonymity and l-diversity values are to be determined
+
+Input: data - input to this api is the dataset for which k-anonymity and l-diversity values 
+			  are to be determined
 Output: a tuple 
 			k-anonymity value 
 			l-diversity value
