@@ -14,7 +14,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="106dp"
-        android:text="Your collected data is being anonymized by default. \nTo share data with the manufacturer, please opt-in."
+        android:text="Your collected data is being anonymized by default. \nTo share unaltered data with the manufacturer, please opt-in."
         android:textSize="28sp" />
 
     <androidx.appcompat.widget.SwitchCompat
